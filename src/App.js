@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import logo from "./logo.svg";
+import "./App.css";
+const Header = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <header>
+      <a href="/">
+        <h1>WWW</h1>
+      </a>
+    </header>
+  );
+};
+const Nav = ({ data }) => {
+  const list = data.map((e) => {
+    return (
+      <li key={e.id}>
+        <a href={`/read/${e.id}`}>{e.title}</a>
+      </li>
+    );
+  });
+  return (
+    <nav>
+      <ol>{list}</ol>
+    </nav>
+  );
+};
+const Article = ({ title, body }) => {
+  return (
+    <article>
+      <h2>{title}</h2>
+      {body}
+    </article>
+  );
+};
+function App() {
+  const topics = [
+    { id: 1, title: "html", body: "html is ..." },
+    { id: 2, title: "css", body: "css is ..." },
+  ];
+  return (
+    <div>
+      <Header></Header>
+      <Nav data={topics}></Nav>
+      <Article title="Welcome" body="Hello,Web"></Article>
     </div>
   );
 }
